@@ -20,16 +20,18 @@ export function ProductSlider({ products, currency }: ProductSliderProps) {
 
   return (
     <div className="relative">
+      {/* Left Scroll Button */}
       <button
         onClick={() => scroll('left')}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-2 rounded-full shadow-md"
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition-colors"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
-      
+
+      {/* Product Slider */}
       <div
         ref={sliderRef}
-        className="flex gap-6 overflow-x-hidden scroll-smooth py-4"
+        className="flex gap-6 overflow-x-auto scroll-smooth py-4 hide-scrollbar"
       >
         {products.map((product) => (
           <div key={product.id} className="flex-none w-72">
@@ -38,9 +40,10 @@ export function ProductSlider({ products, currency }: ProductSliderProps) {
         ))}
       </div>
 
+      {/* Right Scroll Button */}
       <button
         onClick={() => scroll('right')}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-2 rounded-full shadow-md"
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition-colors"
       >
         <ChevronRight className="w-6 h-6" />
       </button>

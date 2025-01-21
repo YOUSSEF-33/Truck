@@ -18,7 +18,7 @@ export function ProductFilters({
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-semibold mb-3">Categories</h3>
+        <h3 className="text-lg font-semibold mb-3">التصنيفات</h3>
         <div className="space-y-2">
           {categories.map((category) => (
             <label key={category} className="flex items-center">
@@ -37,19 +37,19 @@ export function ProductFilters({
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold mb-3">Price Range</h3>
+        <h3 className="text-lg font-semibold mb-3">مدى السعر</h3>
         <div className="space-y-2">
           <input
             type="range"
             min={0}
-            max={100000}
+            max={50000}
             value={priceRange[1]}
             onChange={(e) => onPriceRangeChange([priceRange[0], Number(e.target.value)])}
             className="w-full"
           />
           <div className="flex justify-between text-sm text-gray-600">
-            <span>{priceRange[0]} EGP</span>
-            <span>{priceRange[1]} EGP</span>
+            <span>{priceRange[0]} </span>
+            <span>{priceRange[1]} </span>
           </div>
         </div>
       </div>

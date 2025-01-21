@@ -12,20 +12,20 @@ export function CartPage() {
   const [paymentStep, setPaymentStep] = useState<'cart' | 'checkout'>('cart');
 
   const total = items.reduce(
-    (sum, item) => sum + item.price[currency.toLowerCase()] * item.quantity,
+    (sum:any, item:any) => sum + item.price[currency] * item.quantity,
     0
   );
 
   if (items.length === 0) {
     return (
       <>
-        <div className="max-w-7xl mx-auto px-4 py-16 text-center">
-          <h2 className="text-2xl font-bold mb-4">Your cart is empty</h2>
+        <div className="max-w-7xl mx-auto px-4 py-16 text-center dark:text-white">
+          <h2 className="text-2xl font-bold mb-4">سلة التسوق فارغة</h2>
           <Link
             to="/products"
             className="text-red-600 hover:text-red-700 font-semibold"
           >
-            Continue Shopping
+            استمر بالتسوق
           </Link>
         </div>
         <Footer />
@@ -35,18 +35,18 @@ export function CartPage() {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-4 py-8 dark:text-white">
         <h1 className="text-3xl font-bold mb-8">
-          {paymentStep === 'cart' ? 'Shopping Cart' : 'Checkout'}
+          {paymentStep === 'cart' ? 'سلة التسوق' : 'الدفع'}
         </h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             {paymentStep === 'cart' ? (
-              items.map((item) => (
+              items.map((item:any) => (
                 <div
                   key={item.id}
-                  className="flex gap-4 border-b py-4 last:border-b-0"
+                  className="flex gap-4 border-b py-4 last:border-b-0 dark:border-gray-700"
                 >
                   <img
                     src={item.images[0]}
@@ -55,19 +55,19 @@ export function CartPage() {
                   />
                   <div className="flex-1">
                     <h3 className="font-semibold">{item.name}</h3>
-                    <p className="text-gray-600 text-sm">{item.description}</p>
+                    <p className="text-gray-600 text-sm dark:text-gray-400">{item.description}</p>
                     <div className="mt-2 flex items-center gap-4">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
-                          className="p-1 rounded hover:bg-gray-100"
+                          className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
                         >
                           <Minus className="w-4 h-4" />
                         </button>
                         <span className="w-8 text-center">{item.quantity}</span>
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="p-1 rounded hover:bg-gray-100"
+                          className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
                         >
                           <Plus className="w-4 h-4" />
                         </button>
@@ -83,7 +83,7 @@ export function CartPage() {
                   <div className="text-right">
                     <p className="font-semibold">
                       {formatCurrency(
-                        item.price[currency.toLowerCase()] * item.quantity,
+                        item.price[currency] * item.quantity,
                         currency
                       )}
                     </p>
@@ -93,68 +93,68 @@ export function CartPage() {
             ) : (
               <form className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold mb-4">Shipping Information</h3>
+                  <h3 className="text-lg font-semibold mb-4">معلومات الشحن</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        First Name
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">
+                        الاسم الأول
                       </label>
                       <input
                         type="text"
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-red-500 focus:border-red-500"
+                        className="w-full px-4 py-2 border rounded-lg focus:ring-red-500 focus:border-red-500 dark:bg-gray-800 dark:border-gray-600"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Last Name
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">
+                        الاسم الأخير
                       </label>
                       <input
                         type="text"
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-red-500 focus:border-red-500"
+                        className="w-full px-4 py-2 border rounded-lg focus:ring-red-500 focus:border-red-500 dark:bg-gray-800 dark:border-gray-600"
                       />
                     </div>
                     <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Address
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">
+                        العنوان
                       </label>
                       <input
                         type="text"
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-red-500 focus:border-red-500"
+                        className="w-full px-4 py-2 border rounded-lg focus:ring-red-500 focus:border-red-500 dark:bg-gray-800 dark:border-gray-600"
                       />
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-semibold mb-4">Payment Information</h3>
+                  <h3 className="text-lg font-semibold mb-4">معلومات الدفع</h3>
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Card Number
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">
+                        رقم البطاقة
                       </label>
                       <input
                         type="text"
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-red-500 focus:border-red-500"
+                        className="w-full px-4 py-2 border rounded-lg focus:ring-red-500 focus:border-red-500 dark:bg-gray-800 dark:border-gray-600"
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Expiry Date
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">
+                          تاريخ الانتهاء
                         </label>
                         <input
                           type="text"
                           placeholder="MM/YY"
-                          className="w-full px-4 py-2 border rounded-lg focus:ring-red-500 focus:border-red-500"
+                          className="w-full px-4 py-2 border rounded-lg focus:ring-red-500 focus:border-red-500 dark:bg-gray-800 dark:border-gray-600"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">
                           CVC
                         </label>
                         <input
                           type="text"
-                          className="w-full px-4 py-2 border rounded-lg focus:ring-red-500 focus:border-red-500"
+                          className="w-full px-4 py-2 border rounded-lg focus:ring-red-500 focus:border-red-500 dark:bg-gray-800 dark:border-gray-600"
                         />
                       </div>
                     </div>
@@ -164,22 +164,22 @@ export function CartPage() {
             )}
           </div>
 
-          <div className="bg-gray-50 p-6 rounded-lg h-fit">
+          <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg h-fit">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold">Order Summary</h3>
+              <h3 className="text-lg font-semibold">ملخص الطلب</h3>
               <select
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value as Currency)}
-                className="border rounded-lg px-4 py-2"
+                className="border rounded-lg px-4 py-2 dark:bg-gray-800 dark:border-gray-600"
               >
-                <option value="EGP">EGP</option>
-                <option value="SAR">SAR</option>
+                <option value="EGP">جنيه مصري</option>
+                <option value="SAR">ريال سعودي</option>
               </select>
             </div>
             
-            <div className="border-t pt-4">
+            <div className="border-t pt-4 dark:border-gray-700">
               <div className="flex justify-between mb-2">
-                <span>Subtotal</span>
+                <span>الإجمالي الفرعي</span>
                 <span className="font-semibold">
                   {formatCurrency(total, currency)}
                 </span>
@@ -190,11 +190,11 @@ export function CartPage() {
               >
                 {paymentStep === 'cart' ? (
                   <>
-                    <CreditCard className="w-5 h-5" />
-                    Proceed to Checkout
+                    <CreditCard className="w-5 h-5 " />
+                    متابعة الدفع
                   </>
                 ) : (
-                  'Complete Order'
+                  'إكمال الطلب'
                 )}
               </button>
             </div>
